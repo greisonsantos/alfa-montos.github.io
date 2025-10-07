@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AlfaMontes • Montagem de Salas Limpas</title>
+  <meta name="description" content="AlfaMontes - Montagem de salas limpas para laboratórios, indústrias farmacêuticas, hospitais e manipulação.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;color:#1f2937;line-height:1.5;background:#f7f9fc}
+    a{text-decoration:none;color:inherit}
+    
+    /* Header */
+    header{position:fixed;top:0;left:0;width:100%;background:#031025;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:12px 24px;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,0.25)}
+    .brand{display:flex;align-items:center;gap:16px}
+    .brand img{width:220px;height:auto;border-radius:8px}
+    nav a{margin-left:24px;color:#fff;font-weight:500;transition:0.3s}
+    nav a:hover{color:#06b6d4}
+    
+    /* Mobile menu */
+    .menu-toggle{display:none;cursor:pointer;font-size:24px}
+    @media(max-width:900px){
+      nav{position:absolute;top:64px;right:0;background:#031025;width:100%;display:none;flex-direction:column;padding:16px 0}
+      nav.active{display:flex}
+      nav a{margin:12px 24px}
+      .menu-toggle{display:block;color:#fff}
+    }
+
+    /* Hero */
+    .hero{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:220px 24px 80px;background:linear-gradient(180deg,#07122b,#07132f);color:#fff}
+    .hero h1{font-size:36px;margin-bottom:16px;line-height:1.2}
+    .hero p{opacity:0.9;max-width:700px;margin-bottom:104px}
+    .cta a{margin:8px;padding:14px 28px;border-radius:8px;font-weight:600;transition:0.3s}
+    .btn-primary{background:#06b6d4;color:#04202a}
+    .btn-primary:hover{background:#05a0b0}
+    .btn-secondary{border:1px solid rgba(255,255,255,0.3);color:#fff}
+    .btn-secondary:hover{background:rgba(255,255,255,0.1)}
+
+    /* Slider */
+    .slider{position:relative;max-width:1200px;margin:40px auto;border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(2,6,23,0.45)}
+    .slides{display:flex;transition:transform 0.6s ease}
+    .slide{min-width:100%;height:480px;position:relative;overflow:hidden;border-radius:12px}
+    .slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s}
+    .slide:hover img{transform:scale(1.05)}
+    .caption{position:absolute;left:24px;bottom:24px;background:rgba(0,0,0,0.6);color:#fff;padding:12px 16px;border-radius:8px;font-weight:600;transition:0.3s}
+    .slider-controls{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;justify-content:space-between;align-items:center;padding:0 12px}
+    .control{background:rgba(0,0,0,0.35);backdrop-filter:blur(4px);border-radius:50%;width:44px;height:44px;display:flex;justify-content:center;align-items:center;color:#fff;cursor:pointer;transition:0.3s}
+    .control:hover{background:rgba(0,0,0,0.6)}
+    .dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:10px}
+    .dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;transition:0.3s}
+    .dot.active{background:#06b6d4;transform:scale(1.2)}
+
+    /* Services */
+    .services{max-width:1200px;margin:40px auto;padding:0 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 6px 18px rgba(10,20,30,0.06);transition:0.3s}
+    .card:hover{transform:translateY(-6px);box-shadow:0 12px 24px rgba(10,20,30,0.12)}
+    .card h3{margin-bottom:12px}
+    .card p{opacity:0.85;font-size:15px;line-height:1.5}
+
+    /* Portfolio */
+    #portfolio{max-width:1200px;margin:0 auto;padding:40px 24px}
+    #portfolio h2{margin-bottom:24px;text-align:center;font-size:28px;color:#031025}
+    .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+    .portfolio-grid img{width:100%;height:200px;object-fit:cover;border-radius:8px;transition:0.3s}
+    .portfolio-grid img:hover{transform:scale(1.05)}
+
+    /* Footer */
+    footer{padding:40px 24px;background:#041022;color:#cfe6f5}
+    footer h3,h4{margin-bottom:12px}
+    footer p{margin-bottom:8px;opacity:0.9;font-size:14px}
+    footer .container{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px}
+
+    @media(max-width:900px){
+      .hero{padding:120px 16px 60px}
+      .slides{height:320px}
+      .services{grid-template-columns:1fr}
+      .portfolio-grid img{height:180px}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <img src="logo1.png" alt="Logo AlfaMontes">
+      <div>
+        <div style="font-weight:700;font-size:24px;">AlfaMontes</div>
+        <div style="font-size:15px;opacity:0.9;">Montagem de Salas Limpas</div>
+      </div>
+    </div>
+    <div class="menu-toggle" id="menuToggle">☰</div>
+    <nav id="navMenu">
+      <a href="#services">Serviços</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#contact">Contato</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>AlfaMontes — Especialistas em Salas Limpas</h1>
+    <p>Projetamos, fabricamos e instalamos salas limpas para laboratórios, indústrias farmacêuticas, hospitais e farmácias de manipulação. Entregamos conformidade, controle e segurança.</p>
+    <div class="cta">
+      <a class="btn-primary" href="#contact">Solicitar orçamento</a>
+      <a class="btn-secondary" href="#portfolio">Ver projetos</a>
+    </div>
+  </section>
+
+  <div class="slider" aria-label="Galeria de montagens">
+    <div class="slides" id="slides">
+      <div class="slide"><img src="pot1.jpeg" alt="Montagem de laboratório farmacêutico"><div class="caption">Montagem de laboratório farmacêutico</div></div>
+      <div class="slide"><img src="pot2.jpeg" alt="Instalação em hospital"><div class="caption">Instalação em hospital</div></div>
+      <div class="slide"><img src="pot3.jpeg" alt="Farmácia de manipulação"><div class="caption">Farmácia de manipulação</div></div>
+    </div>
+    <div class="slider-controls">
+      <div class="control" id="prev">‹</div>
+      <div class="control" id="next">›</div>
+    </div>
+    <div class="dots" id="dots"></div>
+  </div>
+
+  <section id="services" class="services">
+    <div class="card">
+      <h3>Projeto e Engenharia</h3>
+      <p>Desenvolvemos o projeto completo com estudos de fluxo de ar, materiais e validação para atender normas e requisitos de cada cliente.</p>
+    </div>
+    <div class="card">
+      <h3>Fabricação e Montagem</h3>
+      <p>Montamos painéis, pass-throughs, boxes e sistemas de filtragem com controle rígido de qualidade e cronograma.</p>
+    </div>
+    <div class="card">
+      <h3>Validação e Manutenção</h3>
+      <p>Realizamos testes de contaminação, ajuste de FFUs, medição de pressão diferencial e planos de manutenção preventiva.</p>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <h2>Projetos recentes</h2>
+    <div class="portfolio-grid">
+      <img src="pot1.jpeg" alt="Projeto 1">
+      <img src="pot2.jpeg" alt="Projeto 2">
+      <img src="pot3.jpeg" alt="Projeto 3">
+      <img src="pot4.jpeg" alt="Projeto 4">
+      <img src="pot5.jpeg" alt="Projeto 5">
+      <img src="pot6.jpeg" alt="Projeto 6">
+      <img src="pot7.jpeg" alt="Projeto 7">
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="container">
+      <div>
+        <h3>Contato</h3>
+        <p>Telefone: <strong>(00) 0 0000-0000</strong></p>
+        <p>Email: <strong>contato@alfamontes.com.br</strong></p>
+        <p>Atendemos todo o Brasil. Solicite avaliação técnica e orçamento sem compromisso.</p>
+      </div>
+      <div>
+        <h4>Endereço</h4>
+        <p>Rua Exemplo, 123 — São Paulo, SP</p>
+      </div>
+    </div>
+    <div style="margin-top:18px;opacity:0.85;font-size:13px;text-align:center;">© AlfaMontes — Montagem de Salas Limpas</div>
+  </footer>
+
+  <script>
+    // Slider
+    const slidesEl = document.getElementById('slides');
+    const slides = Array.from(slidesEl.children);
+    const dotsEl = document.getElementById('dots');
+    let current = 0;
+    let timer = null;
+
+    function renderDots(){
+      dotsEl.innerHTML = '';
+      slides.forEach((_,i)=>{
+        const d = document.createElement('div');
+        d.className = 'dot' + (i===current? ' active':'');
+        d.onclick = ()=>{goTo(i);resetTimer()};
+        dotsEl.appendChild(d);
+      });
+    }
+
+    function update(){
+      slidesEl.style.transform = `translateX(-${current*100}%)`;
+      const dots = dotsEl.querySelectorAll('.dot');
+      dots.forEach((d,i)=>d.classList.toggle('active', i===current));
+    }
+
+    function next(){ current = (current+1) % slides.length; update(); }
+    function prev(){ current = (current-1+slides.length) % slides.length; update(); }
+    function goTo(i){ current = i; update(); }
+    function resetTimer(){ clearInterval(timer); timer = setInterval(next, 5000); }
+
+    document.getElementById('next').addEventListener('click', ()=>{ next(); resetTimer() });
+    document.getElementById('prev').addEventListener('click', ()=>{ prev(); resetTimer() });
+
+    renderDots(); update(); resetTimer();
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    menuToggle.addEventListener('click', ()=>navMenu.classList.toggle('active'));
+  </script>
+
+</body>
+</html>
